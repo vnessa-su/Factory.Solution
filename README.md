@@ -1,10 +1,10 @@
-# _{Application Name}_
+# Dr. Sillystringz's Factory - Machine Repairs
 
 #### _{Brief description of application},{Date of current version}_
 
 #### To see my live website go to {GH_PAGES_LINK_HERE}!
 
-#### By _**{List of contributors}**_
+#### By Vanessa Su
 
 ## Description
 
@@ -21,7 +21,6 @@ _{This is a detailed description of your application. Give as much detail as nee
 * Razor
 * Entity Framework Core
 * MySQL
-* MSTest
 * VS Code
 
 ## Setup/Installation Requirements
@@ -80,4 +79,4 @@ For any questions or comments, please reach out through GitHub.
 
 [MIT License](license)
 
-Copyright (c) [year] [names]
+Copyright (c) 2021 Vanessa Su
