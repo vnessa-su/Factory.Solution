@@ -1,3 +1,54 @@
 @{
   Layout = "_Layout";
 }
+
+@model Factory.Models.Machine
+
+<h1>Edit @Html.DisplayFor(model => model.ProductModel)</h1>
+
+<div>
+  @using (Html.BeginForm())
+  {
+    @Html.HiddenFor(model => model.MachineId)
+
+    @Html.LabelFor(model => model.Manufacturer)
+    @Html.TextBoxFor(model => model.Manufacturer)
+    <br>
+    @Html.LabelFor(model => model.ProductModel)
+    @Html.TextBoxFor(model => model.ProductModel)
+    <br>
+    @Html.LabelFor(model => model.CompanyEmail)
+    @Html.TextBoxFor(model => model.CompanyEmail)
+    <br>
+    @Html.LabelFor(model => model.CompanyPhoneNumber)
+    @Html.TextBoxFor(model => model.CompanyPhoneNumber)
+    <br>
+    @Html.LabelFor(model => model.CompanyAddress)
+    @Html.TextBoxFor(model => model.CompanyAddress)
+    <br>
+    @Html.LabelFor(model => model.CompanyWebsite)
+    @Html.TextBoxFor(model => model.CompanyWebsite)
+    <br>
+
+    <h4>Certified Repair Engineers:</h4>
+    @if (@Model.EngineerMachineJoinEntities.Count == 0)
+    {
+      <h5>None Added</h5>
+    }
+    else
+    {
+      <ul>
+        <p>Delete?</p>
+        @foreach (var join in Model.EngineerMachineJoinEntities)
+        {
+          <li>
+            <input type="checkbox" name="machineIds" value="@join.Engineer.EngineerId" />
+            @join.Engineer.LastName, @join.Engineer.LastName
+          </li>
+        }
+      </ul>
+    }
+
+    <input type="submit" value="Save" />
+  }
+</div>
