@@ -1,3 +1,37 @@
 @{
   Layout = "_Layout";
 }
+
+@model Factory.Models.Engineer
+
+<h1>@Html.DisplayFor(model => model.FirstName) @Html.DisplayFor(model => model.LastName)</h1>
+<hr />
+
+<h4>@Html.DisplayNameFor(model => model.HireDate): @Html.DisplayFor(model => model.HireDate)</h4>
+<h4>@Html.DisplayNameFor(model => model.Email): @Html.DisplayFor(model => model.Email)</h4>
+<h4>@Html.DisplayNameFor(model => model.PhoneNumber): @Html.DisplayFor(model => model.PhoneNumber)</h4>
+<h4>@Html.DisplayNameFor(model => model.Address): @Html.DisplayFor(model => model.Address)</h4>
+<br>
+
+<h4>Machine Repair Certifications:</h4>
+@if (@Model.EngineerMachineJoinEntities.Count == 0)
+{
+  <h5>None Added</h5>
+}
+else
+{
+  <ul>
+  @foreach (var join in Model.EngineerMachineJoinEntities)
+    {
+      <li>
+        @Html.ActionLink($"{join.Machine.ProductModel}", "Details", "Machines", new { id = join.Machine.MachineId })
+      </li>
+    }
+  </ul>
+}
+
+<div class="text-center m-5">
+  @Html.ActionLink("Add Certification", "AddMachine", new { id = Model.EngineerId }, new { @class = "btn btn-secondary btn-lg mx-2 my-1" })
+  @Html.ActionLink("Edit Engineer", "Edit", new { id = Model.EngineerId }, new { @class = "btn btn-secondary btn-lg mx-2 my-1" })
+  @Html.ActionLink("Delete Engineer", "Delete", new { id = Model.EngineerId }, new { @class = "btn btn-secondary btn-lg mx-2 my-1" })
+</div>
