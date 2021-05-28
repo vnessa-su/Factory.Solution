@@ -1,3 +1,54 @@
 @{
   Layout = "_Layout";
 }
+
+@using Factory.Models
+
+<h1>Dr. Sillystringz's Factory</h1>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm text-center">
+      <h2>Engineers</h2>
+      @if (ViewBag.EngineerList.Count == 0)
+      {
+        <h3>No engineers have been added!</h3>
+      }
+      else
+      {
+        <ul>
+          @foreach (Engineer engineer in ViewBag.EngineerList)
+          {
+            <li>
+              @Html.ActionLink($"{engineer.LastName}, {engineer.FirstName}", "Details", "Engineers", new { id = engineer.EngineerId })
+            </li>
+          }
+        </ul>
+      }
+      <div class="m-5">
+        @Html.ActionLink("Add Engineer", "Create", "Engineers", null, new {@class = "btn btn-secondary btn-lg mx-2 my-1"})
+      </div>
+    </div>
+    <div class="col-sm text-center">
+      <h2>Machines</h2>
+      @if (ViewBag.MachineList.Count == 0)
+        {
+          <h3>No machines have been added!</h3>
+        }
+        else
+        {
+          <ul>
+            @foreach (Machine machine in ViewBag.MachineList)
+            {
+              <li>
+                @Html.ActionLink($"{machine.ProductModel}", "Details", "Machines", new { id = machine.MachineId })
+              </li>
+            }
+          </ul>
+        }
+      <div class="m-5">
+        @Html.ActionLink("Add Machine", "Create", "Machines", null, new {@class = "btn btn-secondary btn-lg mx-2 my-1"})
+      </div>
+    </div>
+  </div>
+</div>
