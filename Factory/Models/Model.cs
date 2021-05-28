@@ -1,4 +1,4 @@
-namespace Template.Models
+namespace Factory.Models
 {
   public class Model
   {

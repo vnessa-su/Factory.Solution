@@ -1,11 +1,11 @@
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
-using Template.Models;
+using Factory.Models;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Template.Controllers
+namespace Factory.Controllers
 {
   public class ModelsController : Controller
   {
