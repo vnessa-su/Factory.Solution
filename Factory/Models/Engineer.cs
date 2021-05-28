@@ -27,7 +27,7 @@ namespace Factory.Models
     [Column(TypeName = "VARCHAR(255)")]
     public string Email { get; set; }
 
-    [Display(Name = "Hire Date")]
+    [Display(Name = "Date Hired")]
     [DataType(DataType.Date)]
     [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
     public DateTime HireDate { get; set; } = DateTime.Now;
