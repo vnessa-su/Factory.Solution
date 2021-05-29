@@ -27,14 +27,18 @@ namespace Factory.Controllers
 
     public ActionResult Create()
     {
-      ViewBag.MachineId = new SelectList(_db.Machines, "MachineId", "ProductModel");
+      List<Machine> allMachines = _db.Machines
+        .OrderBy(machine => machine.Manufacturer)
+        .ThenBy(machine => machine.ProductModel)
+        .ToList();
+      ViewBag.MachineList = allMachines;
       return View();
     }
 
     [HttpPost]
-    public ActionResult Create(Engineer engineer, int[] MachineIds)
+    public ActionResult Create(Engineer engineer, int[] machineIds)
     {
-      foreach (int machineId in MachineIds)
+      foreach (int machineId in machineIds)
       {
         bool entryExists = _db.EngineerMachine
           .Any(entry => entry.EngineerId == engineer.EngineerId && entry.MachineId == machineId);
@@ -63,7 +67,6 @@ namespace Factory.Controllers
         .Include(engineer => engineer.EngineerMachineJoinEntities)
         .ThenInclude(join => join.Machine)
         .FirstOrDefault(engineer => engineer.EngineerId == id);
-      ViewBag.CourseId = new SelectList(_db.Machines, "MachineId", "ProductModel");
       return View(selectedEngineer);
     }
 
@@ -97,5 +100,37 @@ namespace Factory.Controllers
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
+
+    public ActionResult AddMachineCertification(int id)
+    {
+      Engineer selectedEngineer = _db.Engineers
+        .Include(engineer => engineer.EngineerMachineJoinEntities)
+        .ThenInclude(join => join.Machine)
+        .FirstOrDefault(engineer => engineer.EngineerId == id);
+
+      List<Machine> allMachines = _db.Machines
+        .OrderBy(machine => machine.Manufacturer)
+        .ThenBy(machine => machine.ProductModel)
+        .ToList();
+      ViewBag.MachineList = allMachines;
+      return View(selectedEngineer);
+    }
+
+    [HttpPost]
+    public ActionResult AddMachineCertification(Engineer engineer, int[] machineIds)
+    {
+      foreach (int machineId in machineIds)
+      {
+        bool entryExists = _db.EngineerMachine
+          .Any(entry => entry.EngineerId == engineer.EngineerId && entry.MachineId == machineId);
+        if (!entryExists)
+        {
+          _db.EngineerMachine.Add(new EngineerMachine() { MachineId = machineId, EngineerId = engineer.EngineerId });
+        }
+      }
+      _db.SaveChanges();
+      return RedirectToAction("Details", new { id = engineer.EngineerId });
+    }
+
   }
 }
