@@ -42,8 +42,8 @@
         @foreach (var join in Model.EngineerMachineJoinEntities)
         {
           <li>
-            <input type="checkbox" name="machineIds" value="@join.Engineer.EngineerId" />
-            @join.Engineer.LastName, @join.Engineer.LastName
+            <input type="checkbox" name="engineerIds" value="@join.Engineer.EngineerId" />
+            @join.Engineer.LastName, @join.Engineer.FirstName
           </li>
         }
       </ul>
