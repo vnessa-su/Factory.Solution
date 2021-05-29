@@ -1,0 +1,33 @@
+@{
+  Layout = "_Layout";
+}
+
+@using Factory.Models
+@model Factory.Models.Engineer
+
+<h1>Add Certifications For @Html.DisplayFor(model => model.FirstName) @Html.DisplayFor(model => model.LastName)</h1>
+<hr />
+
+<h4>Available Machine Repair Certifications:</h4>
+@using (Html.BeginForm())
+{
+  @Html.HiddenFor(model => model.EngineerId)
+
+  @if (@ViewBag.MachineList.Count == 0)
+  {
+    <p>No Machines Available for Certification</p>
+  }
+  else
+  {
+    <ul>
+  @foreach (Machine machine in ViewBag.MachineList)
+      {
+        <li>
+          <input type="checkbox" name="machineIds" value="@machine.MachineId" />
+          @machine.ProductModel
+        </li>
+      }
+    </ul>
+  }
+  <input type="submit" value="Save" />
+}
