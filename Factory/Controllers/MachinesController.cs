@@ -97,5 +97,36 @@ namespace Factory.Controllers
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
+
+    public ActionResult AddRepairEngineer(int id)
+    {
+      Machine selectedMachine = _db.Machines
+        .Include(machine => machine.EngineerMachineJoinEntities)
+        .ThenInclude(join => join.Engineer)
+        .FirstOrDefault(machine => machine.MachineId == id);
+
+      List<Engineer> allEngineers = _db.Engineers
+        .OrderBy(engineer => engineer.LastName)
+        .ThenBy(engineer => engineer.FirstName)
+        .ToList();
+      ViewBag.EngineerList = allEngineers;
+      return View(selectedMachine);
+    }
+
+    [HttpPost]
+    public ActionResult AddRepairEngineer(Machine machine, int[] engineerIds)
+    {
+      foreach (int engineerId in engineerIds)
+      {
+        bool entryExists = _db.EngineerMachine
+          .Any(entry => entry.EngineerId == engineerId && entry.MachineId == machine.MachineId);
+        if (!entryExists)
+        {
+          _db.EngineerMachine.Add(new EngineerMachine() { MachineId = machine.MachineId, EngineerId = engineerId });
+        }
+      }
+      _db.SaveChanges();
+      return RedirectToAction("Details", new { id = machine.MachineId });
+    }
   }
 }
