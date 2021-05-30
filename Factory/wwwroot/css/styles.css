@@ -5,3 +5,24 @@
   background-color: rgba(12, 10, 10, 0.5);
   background-blend-mode: multiply;
 }
+
+h1 {
+  font-family: "ZCOOL KuaiLe", cursive;
+  color: white;
+  text-shadow: 1px 1px black;
+  text-align: center;
+}
+
+.page-content {
+  font-family: "ZCOOL QingKe HuangYou", cursive;
+  background-color: rgba(255, 255, 255, 0.7);
+  min-height: 350px;
+  max-width: 800px;
+  border-radius: 10px;
+}
+
+li {
+  font-size: x-large;
+  text-shadow: 1px 1px black;
+  margin-left: 50px;
+}
