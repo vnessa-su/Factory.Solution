@@ -1,0 +1,7 @@
+#page-background {
+  background-image: url("../images/colorful-gears-digital-buggu.jpg");
+  background-size: cover;
+  background-attachment: fixed;
+  background-color: rgba(12, 10, 10, 0.5);
+  background-blend-mode: multiply;
+}
