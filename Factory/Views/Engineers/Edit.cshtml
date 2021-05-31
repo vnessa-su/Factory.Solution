@@ -5,48 +5,61 @@
 @model Factory.Models.Engineer
 
 <h1>Edit @Html.DisplayFor(model => model.FirstName) @Html.DisplayFor(model => model.LastName)</h1>
-<hr />
 
-@using (Html.BeginForm())
-{
-  @Html.HiddenFor(model => model.EngineerId)
-
-  @Html.LabelFor(model => model.FirstName)
-  @Html.TextBoxFor(model => model.FirstName)
-  <br>
-  @Html.LabelFor(model => model.LastName)
-  @Html.TextBoxFor(model => model.LastName)
-  <br>
-  @Html.LabelFor(model => model.Email)
-  @Html.TextBoxFor(model => model.Email)
-  <br>
-  @Html.LabelFor(model => model.PhoneNumber)
-  @Html.TextBoxFor(model => model.PhoneNumber)
-  <br>
-  @Html.LabelFor(model => model.Address)
-  @Html.TextBoxFor(model => model.Address)
-  <br>
-  @Html.LabelFor(model => model.HireDate)
-  @Html.TextBoxFor(model => model.HireDate, "{0:yyyy-MM-dd}", new { type="date" })
-  <br>
-
-  @if (@Model.EngineerMachineJoinEntities.Count == 0)
+<div class="container page-content">
+  @using (Html.BeginForm())
   {
-    <p>No Machine Repair Certifications Added</p>
-  }
-  else
-  {
-    <h4>Machine Repair Certifications:</h4>
-    <ul>
-  <p>Delete?</p>
-  @foreach (var join in Model.EngineerMachineJoinEntities)
+    @Html.HiddenFor(model => model.EngineerId)
+  
+    <div class="form-group form-inline">
+      @Html.LabelFor(model => model.FirstName, new{@class = "col-sm-4 col-form-label"})
+      @Html.TextBoxFor(model => model.FirstName, new {@class = "form-control", required="required"})
+    </div>
+      <div class="form-group form-inline">
+      @Html.LabelFor(model => model.LastName, new{@class = "col-sm-4 col-form-label"})
+      @Html.TextBoxFor(model => model.LastName, new {@class = "form-control", required="required"})
+    </div>
+      <div class="form-group form-inline">
+      @Html.LabelFor(model => model.Email, new{@class = "col-sm-4 col-form-label"})
+      @Html.TextBoxFor(model => model.Email, new {@class = "form-control", required="required"})
+    </div>
+      <div class="form-group form-inline">
+      @Html.LabelFor(model => model.PhoneNumber, new{@class = "col-sm-4 col-form-label"})
+      @Html.TextBoxFor(model => model.PhoneNumber, new {@class = "form-control", required="required"})
+    </div>
+      <div class="form-group form-inline">
+      @Html.LabelFor(model => model.Address, new{@class = "col-sm-4 col-form-label"})
+      @Html.TextBoxFor(model => model.Address, new {@class = "form-control", required="required"})
+    </div>
+      <div class="form-group form-inline">
+      @Html.LabelFor(model => model.HireDate, new{@class = "col-sm-4 col-form-label"})
+      @Html.TextBoxFor(model => model.HireDate, "{0:yyyy-MM-dd}", new { @class = "form-control", required="required",
+      type="date" })
+    </div>
+  
+    <div class="mx-3">
+      @if (@Model.EngineerMachineJoinEntities.Count == 0)
       {
-        <li>
-          <input type="checkbox" name="machineIds" value="@join.Machine.MachineId" />
-          @join.Machine.ProductModel
-        </li>
+        <p>No Machine Repair Certifications Added</p>
       }
-    </ul>
+      else
+      {
+        <h4>Machine Repair Certifications:</h4>
+        <ul>
+      <p class="text-danger">Delete?</p>
+      @foreach (var join in Model.EngineerMachineJoinEntities)
+          {
+            <li>
+              <input type="checkbox" name="machineIds" value="@join.Machine.MachineId" />
+              @join.Machine.ProductModel
+            </li>
+          }
+        </ul>
+      }
+    </div>
+
+    <div class="text-center">
+      <input type="submit" value="Save" class="btn btn-primary btn-lg" />
+    </div>
   }
-  <input type="submit" value="Save" />
-}
+</div>
