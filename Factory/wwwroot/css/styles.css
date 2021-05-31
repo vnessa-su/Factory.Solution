@@ -24,8 +24,7 @@ h1 {
   padding: 30px;
 }
 
-li {
+a {
   font-size: x-large;
   text-shadow: 1px 1px black;
-  margin-left: 50px;
 }
