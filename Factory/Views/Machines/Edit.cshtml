@@ -6,39 +6,45 @@
 
 <h1>Edit @Html.DisplayFor(model => model.ProductModel)</h1>
 
-<div>
+<div class="container page-content">
   @using (Html.BeginForm())
   {
     @Html.HiddenFor(model => model.MachineId)
 
-    @Html.LabelFor(model => model.Manufacturer)
-    @Html.TextBoxFor(model => model.Manufacturer)
-    <br>
-    @Html.LabelFor(model => model.ProductModel)
-    @Html.TextBoxFor(model => model.ProductModel)
-    <br>
-    @Html.LabelFor(model => model.CompanyEmail)
-    @Html.TextBoxFor(model => model.CompanyEmail)
-    <br>
-    @Html.LabelFor(model => model.CompanyPhoneNumber)
-    @Html.TextBoxFor(model => model.CompanyPhoneNumber)
-    <br>
-    @Html.LabelFor(model => model.CompanyAddress)
-    @Html.TextBoxFor(model => model.CompanyAddress)
-    <br>
-    @Html.LabelFor(model => model.CompanyWebsite)
-    @Html.TextBoxFor(model => model.CompanyWebsite)
-    <br>
+    <div class="form-group form-inline">
+      @Html.LabelFor(model => model.Manufacturer, new{@class = "col-sm-4 col-form-label"})
+      @Html.TextBoxFor(model => model.Manufacturer, new {@class = "form-control", required="required"})
+    </div>
+    <div class="form-group form-inline">
+      @Html.LabelFor(model => model.ProductModel, new{@class = "col-sm-4 col-form-label"})
+      @Html.TextBoxFor(model => model.ProductModel, new {@class = "form-control", required="required"})
+    </div>
+    <div class="form-group form-inline">
+      @Html.LabelFor(model => model.CompanyEmail, new{@class = "col-sm-4 col-form-label"})
+      @Html.TextBoxFor(model => model.CompanyEmail, new {@class = "form-control", required="required"})
+    </div>
+    <div class="form-group form-inline">
+      @Html.LabelFor(model => model.CompanyPhoneNumber, new{@class = "col-sm-4 col-form-label"})
+      @Html.TextBoxFor(model => model.CompanyPhoneNumber, new {@class = "form-control", required="required"})
+    </div>
+    <div class="form-group form-inline">
+      @Html.LabelFor(model => model.CompanyAddress, new{@class = "col-sm-4 col-form-label"})
+      @Html.TextBoxFor(model => model.CompanyAddress, new {@class = "form-control", required="required"})
+    </div>
+    <div class="form-group form-inline">
+      @Html.LabelFor(model => model.CompanyWebsite, new{@class = "col-sm-4 col-form-label"})
+      @Html.TextBoxFor(model => model.CompanyWebsite, new {@class = "form-control", required="required"})
+    </div>
 
     <h4>Certified Repair Engineers:</h4>
     @if (@Model.EngineerMachineJoinEntities.Count == 0)
     {
-      <h5>None Added</h5>
+      <p>No Certified Engineers Added</p>
     }
     else
     {
       <ul>
-        <p>Delete?</p>
+        <p class="text-danger">Delete?</p>
         @foreach (var join in Model.EngineerMachineJoinEntities)
         {
           <li>
@@ -49,6 +55,8 @@
       </ul>
     }
 
-    <input type="submit" value="Save" />
+    <div class="text-center">
+      <input type="submit" value="Save" class="btn btn-primary btn-lg" />
+    </div>
   }
 </div>
