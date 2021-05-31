@@ -6,28 +6,36 @@
 
 <h1>Add Machine</h1>
 
-<div>
+<div class="container page-content">
   @using (Html.BeginForm())
   {
-    @Html.LabelFor(model => model.Manufacturer)
-    @Html.TextBoxFor(model => model.Manufacturer)
-    <br>
-    @Html.LabelFor(model => model.ProductModel)
-    @Html.TextBoxFor(model => model.ProductModel)
-    <br>
-    @Html.LabelFor(model => model.CompanyEmail)
-    @Html.TextBoxFor(model => model.CompanyEmail)
-    <br>
-    @Html.LabelFor(model => model.CompanyPhoneNumber)
-    @Html.TextBoxFor(model => model.CompanyPhoneNumber)
-    <br>
-    @Html.LabelFor(model => model.CompanyAddress)
-    @Html.TextBoxFor(model => model.CompanyAddress)
-    <br>
-    @Html.LabelFor(model => model.CompanyWebsite)
-    @Html.TextBoxFor(model => model.CompanyWebsite)
-    <br>
+    <div class="form-group form-inline">
+      @Html.LabelFor(model => model.Manufacturer, new{@class = "col-sm-4 col-form-label"})
+      @Html.TextBoxFor(model => model.Manufacturer, new {@class = "form-control", required="required"})
+    </div>
+    <div class="form-group form-inline">
+      @Html.LabelFor(model => model.ProductModel, new{@class = "col-sm-4 col-form-label"})
+      @Html.TextBoxFor(model => model.ProductModel, new {@class = "form-control", required="required"})
+    </div>
+    <div class="form-group form-inline">
+      @Html.LabelFor(model => model.CompanyEmail, new{@class = "col-sm-4 col-form-label"})
+      @Html.TextBoxFor(model => model.CompanyEmail, new {@class = "form-control", required="required"})
+    </div>
+    <div class="form-group form-inline">
+      @Html.LabelFor(model => model.CompanyPhoneNumber, new{@class = "col-sm-4 col-form-label"})
+      @Html.TextBoxFor(model => model.CompanyPhoneNumber, new {@class = "form-control", required="required"})
+    </div>
+    <div class="form-group form-inline">
+      @Html.LabelFor(model => model.CompanyAddress, new{@class = "col-sm-4 col-form-label"})
+      @Html.TextBoxFor(model => model.CompanyAddress, new {@class = "form-control", required="required"})
+    </div>
+    <div class="form-group form-inline">
+      @Html.LabelFor(model => model.CompanyWebsite, new{@class = "col-sm-4 col-form-label"})
+      @Html.TextBoxFor(model => model.CompanyWebsite, new {@class = "form-control", required="required"})
+    </div>
 
-    <input type="submit" value="Add" />
+    <div class="text-center">
+      <input type="submit" value="Add" class="btn btn-primary btn-lg" />
+    </div>
   }
 </div>
