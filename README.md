@@ -49,7 +49,7 @@ MVC pattern web app that is used to keep track of engineers and machines in a fa
 ```
 {
   "ConnectionStrings": {
-      "DefaultConnection": "Server=localhost;Port=<port number>;Database={PROJECT_DATABASE};Uid=root;Pwd=<password>;"
+      "DefaultConnection": "Server=localhost;Port=<port number>;Database=vanessa_su;Uid=root;Pwd=<password>;"
   }
 }
 ```
